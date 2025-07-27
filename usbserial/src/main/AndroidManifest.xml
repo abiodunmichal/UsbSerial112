@@ -1,1 +1,31 @@
-<manifest package="com.felhr.usbserial"/>
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.felhr.usbserial">
+
+    <!-- Permission to access USB devices -->
+    <uses-feature android:name="android.hardware.usb.host" />
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+
+    <application
+        android:allowBackup="true"
+        android:label="USB Serial Controller"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+
+        <!-- Main entry point -->
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- USB device filter -->
+        <meta-data
+            android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+            android:resource="@xml/device_filter" />
+
+        <activity android:name="com.felhr.usbserial.UsbDeviceActivity"
+            android:exported="false"/>
+    </application>
+</manifest>
